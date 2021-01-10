@@ -7,3 +7,4 @@
 
 현재 최신 버전은 v1.0 입니다.  
 플러그인을 다운받으시려면 [여기](https://github.com/Team-Fi/single-life-per-account/releases/latest)에서 다운로드 받으실 수 있습니다.
+
