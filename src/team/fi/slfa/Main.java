@@ -23,10 +23,14 @@ public class Main extends JavaPlugin implements Listener {
 	}
 	@EventHandler()
 	public void onPlayerDeath(PlayerDeathEvent event) {
+		
 		Player player = event.getEntity();
 		player.getLocation().getWorld().playEffect(player.getLocation(), Effect.SMOKE, 1);
-		Bukkit.getBanList(Type.NAME).addBan(player.getName(), "§c§lYou died!", null, "console");
-		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kick "+player.getName());
+		if(player.hasPermission("slpa.bypass") == false) {
+			Bukkit.getBanList(Type.NAME).addBan(player.getName(), "§c§lYou died!", null, "console");
+			player.kickPlayer("§c§lYou have Died!");
+			//Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kick "+player.getName());
+		}
 		event.setDeathMessage("§cPlayer §l"+player.getName()+"§c is Died!");
 	//Bukkit.getBanlist(Type.NAME).addBan(player.getName(), "You died!", expires, "console");
 	}
