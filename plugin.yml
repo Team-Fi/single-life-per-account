@@ -1,6 +1,6 @@
 main: team.fi.slfa.Main
 name: SLPA
-version: 1.2
+version: 1.0
 author: FSanchir
 description: Single Life Per Account
 api-version: 1.16
