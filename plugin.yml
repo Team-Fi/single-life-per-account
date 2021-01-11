@@ -4,3 +4,6 @@ version: 1.0
 author: FSanchir
 description: Single Life Per Account
 api-version: 1.16
+commands:
+  slpa:
+    description: SLPA Command
