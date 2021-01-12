@@ -1,6 +1,6 @@
 package team.fi.slfa;
 import java.util.ArrayList;
-import team.fi.slfa.Cmd;
+//import team.fi.slfa.Cmd;
 // 혹시 읽는 분 계시면 패키지 명 무시해주세요.. 귀찮아서 For 넣었다가 Per로 바꿈..
 import org.bukkit.BanList.Type;
 import org.bukkit.Bukkit;
@@ -11,12 +11,13 @@ import org.bukkit.Material;
 import org.bukkit.World;
 //import org.bukkit.World;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+//import org.bukkit.event.player.PlayerJoinEvent;
+//import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.Plugin;
@@ -60,27 +61,22 @@ public class Main extends JavaPlugin implements Listener {
 		}
 
 	}
-	@EventHandler
-	public void join(PlayerJoinEvent e) {
-		String plnick = e.getPlayer().getName();
-		e.setJoinMessage(ChatColor.GREEN+"[+]"+plnick+ChatColor.GOLD+"님이 접속하셨습니다!");
-	}
-	@EventHandler
-	public void leave(PlayerQuitEvent e) {
-		String plnick = e.getPlayer().getName();
-		e.setQuitMessage(ChatColor.GREEN+"["+ChatColor.DARK_RED+"-"+ChatColor.GREEN+"]"+plnick+ChatColor.GOLD+"님이 퇴장하셨습니다!");	
-	}
 	@Override
 	public void onEnable() {
+		saveDefaultConfig();
 		plugin = this;
-		console.sendMessage( ChatColor.AQUA + "SLPA Enabling");
+		console.sendMessage(ChatColor.AQUA + "SLPA Enabling");
 		Main.instance = this;
 		getServer().getPluginManager().registerEvents(this, this);
 		com();
+		FileConfiguration config = this.getConfig();
+		if(config.getBoolean("join-quit-message")) {
+			Bukkit.getPluginManager().registerEvents(new Joinquithandler(), this);
+		}
 	}
 	@Override
 	public void onDisable() {
-		console.sendMessage( ChatColor.AQUA + "SLPA Disabling");
+		console.sendMessage(ChatColor.AQUA + "SLPA Disabling");
 	}
 	public static Plugin getpl() {
 		return plugin;
