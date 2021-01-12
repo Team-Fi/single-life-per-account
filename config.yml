@@ -1,0 +1,6 @@
+join-quit-message: true #if it's true, join and quit message format will changed like below
+joinprefix: §a[+]
+quitprefix: §a[§4-§a]
+joinmessage: 님이 접속하셨습니다!
+quitmessage: 님이 퇴장하셨습니다!
+# joinprefix+player+joinmessage
